@@ -1,4 +1,4 @@
-use rand::distributions::Alphanumeric;
+use crate::random::AlphanumericAndSpace;
 use rand::{thread_rng, Rng};
 
 const MUTATION_RATE: i32 = 1;
@@ -17,7 +17,7 @@ impl DNA {
 
 
     pub fn random_genes(target: &String) -> String {
-        thread_rng().sample_iter(Alphanumeric).take(target.len()).map(char::from).collect()
+        thread_rng().sample_iter(AlphanumericAndSpace).take(target.len()).map(char::from).collect()
     }
 
 
@@ -48,7 +48,7 @@ impl DNA {
         let mut rng = thread_rng();
         for i in 0..self.genes.len() {
             if rng.gen_range(0..100) < MUTATION_RATE {
-                let new_char: String = thread_rng().sample_iter(Alphanumeric).take(1).map(char::from).collect();
+                let new_char: String = thread_rng().sample_iter(AlphanumericAndSpace).take(1).map(char::from).collect();
                 self.genes.replace_range(
                     self.genes
                         .char_indices()
