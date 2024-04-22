@@ -9,6 +9,7 @@ pub struct Population {
 }
 
 impl Population {
+    /// Creates a new population
     pub fn new(target: &String) -> Population {
         let mut population: Vec<DNA> = vec![];
         for _i in 0..POP_SIZE {
@@ -17,12 +18,17 @@ impl Population {
         Population { pops: population }
     }
 
+    /// calculating the fitness of the population, returns unit `()`
     pub fn calculate_total_fitness(&mut self, target: &String) {
         self.pops.iter_mut().for_each(|pop| {
             pop.calculate_fitness(&target);
         })
     }
 
+
+    /// ## find_best
+    /// finds the `DNA` with the best `fitness` in the `population`
+    /// and returns an immutable reference of it.
     pub fn find_best(&self) -> &DNA {
         if let Some(best) = self
             .pops
@@ -35,7 +41,8 @@ impl Population {
         }
     }
 
-
+    /// ## total_fitness
+    /// calculates and return the total_fitness of the population
     pub fn total_fitness(&self) -> f32{
         let mut total_fitness = 0.0;
         self.pops.iter().for_each(| dna | {
@@ -84,10 +91,4 @@ impl Population {
 
         Population{ pops }
     }
-
-    // pub fn next_generation(&self){
-    //     // get mating pool
-    //     // let pool = 
-    // }
-
 }

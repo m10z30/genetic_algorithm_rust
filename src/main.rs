@@ -8,7 +8,7 @@ fn main() {
     // initialize population
     let mut population = Population::new(&target);
 
-
+    // start at generation 0
     let mut g_count = 0;
 
     loop{
@@ -34,7 +34,4 @@ fn main() {
         // increament generation
         g_count += 1;
     }
-    
-
-     
 }
